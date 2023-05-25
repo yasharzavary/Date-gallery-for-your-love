@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 # main root
 root=Tk()
@@ -28,23 +29,33 @@ passEntry=Entry(master=root)
 passEntry.pack()
 
 def nameAndPassControl(event):
-    pass
-
-def comein(event):
-    nameButton.config(bg='#888888')
-
-def comeout(event):
-    nameButton.config(bg='#F0F0F0')
-
-
+    if nameEntry.get().upper() != 'GUMBULI':
+        messagebox.showerror('Error happend', 'name isn\'t correct')
+    elif passEntry.get().upper() != '1226':
+        messagebox.showerror('Error happend', 'password isn\'t correct')
+        
 
 # submit button part
 nameButton=Button(master=root, text='submit', bg='#F0F0F0')
-nameButton.bind('<Enter>',comein)
-nameButton.bind('<Leave>',comeout)
+nameButton.bind('<Enter>',lambda event: nameButton.config(bg='#888888'))
+nameButton.bind('<Leave>',lambda event: nameButton.config(bg='#F0F0F0'))
 nameButton.bind('<Button>',nameAndPassControl)
 nameButton.pack()
-    
+  
+def settingButton(event):
+    pass
+
+setButton=Button(master=root, text='setting', bg='#F0F0F0')
+setButton.bind('<Enter>',lambda event: setButton.config(bg='#888888'))
+setButton.bind('<Leave>',lambda event: setButton.config(bg='#F0F0F0'))
+setButton.bind('<Button>',lambda event: root.destroy())
+setButton.pack(side="bottom")
+
+exitButton=Button(master=root, text='Exit', bg='#F0F0F0')
+exitButton.bind('<Enter>',lambda event: exitButton.config(bg='#888888'))
+exitButton.bind('<Leave>',lambda event: exitButton.config(bg='#F0F0F0'))
+exitButton.bind('<Button>',lambda event: root.destroy())
+exitButton.pack()
+
 
 root.mainloop()
-
